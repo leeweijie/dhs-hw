@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DHS Homework - Add Homework</title>
+
+    <!-- Bootstrap -->
+    <link href="dashboardr/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dashboardr/addtask.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-light bg-faded main-nav">
+        <div class="navbar-header"><a href="dashboard" class="navbar-brand">DHS Homework</a></div>
+        <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-muted" href="/profile">Profile</a>
+        </li>
+        </ul>
+    </nav>
+    <div class="container">
+      <h1 class="text-primary">Add Homework</h1>
+      <form action="/submit" method="post">
+        <fieldset class="form-group">
+          <label for="taskName">Name<span class="text-danger"> *</span></label>
+          <input type="text" name="name" class="form-control" id="taskName" placeholder="Enter homework name" required>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="subject" style="margin-bottom: 0;">Subject<span class="text-danger"> *</span></label>
+          <div style="margin-top: 0.5rem">
+          <select name = "subject" class="c-select" required>
+            {%for subject in subjects%}
+            <option value="{{subject}}" {%if subject=='others'%}selected{%endif%}>{{subject}}</option>
+            {%endfor%}
+          </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="type" style="margin-bottom: 0;">Type<span class="text-danger"> *</span></label>
+          <div style="margin-top: 0.5rem">
+          <select name = "type" class="c-select" required>
+            <option value="public" selected>Public (class)</option>
+            <option value="private">Private</option>
+          </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="subject" style="margin-bottom: 0;">Priority</label>
+          <div style="margin-top: 0.5rem">
+          <select name = "priority" class="c-select" required>
+            <option value="0">Nil</option>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="taskDescription">Description</label>
+          <textarea name="description" class="form-control" id="taskDescription" placeholder="Enter description"></textarea>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="dueDate">Due Date</label>
+          <input min="{{min_date}}" type="date" name="due_date" class="form-control" id="dueDate">
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="time_needed" style="margin-bottom: 0;">Time needed</label>
+          <small class="text-muted" style="display: block; margin-bottom: 0.4rem;">How long to complete this task?</small>
+          <span>
+          <select style="display:inline"  name = "time_needed" class="c-select">
+            <option value="0" selected>Nil</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select><p style="display:inline; padding-left: 0.4rem" class="text-muted">h</p></span>
+        </fieldset>
+        <button type="submit" name="submit-btn" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="dashboardr/js/bootstrap.min.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75630650-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+  </body>
+</html>

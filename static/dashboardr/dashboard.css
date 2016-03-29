@@ -1,0 +1,35 @@
+body {
+	padding-top: 70px;
+}
+#heading {
+	margin-bottom: 2.5rem;
+}
+
+#main-heading{
+	display: inline-block;
+	position: relative;
+	top: 1.65rem;
+	margin-right: 1.2rem;
+}
+
+#task-heading{
+	width: 50%;
+}
+
+#add-btn, #sort-btn{
+	margin-top: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+	#main-heading{
+		display: block;
+	}
+	body {
+		padding-top: 3rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#task-label {
+		display: block;
+	}

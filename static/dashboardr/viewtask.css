@@ -1,0 +1,34 @@
+body {
+	padding-top: 4rem;
+}
+
+#task-name{
+	display: inline-block;
+	position: relative;
+	top: 1.65rem;
+	padding-right: 0;
+	padding-bottom: 1rem;
+}
+
+#edit-btn, #toggle-btn{
+	margin-top: 2rem;
+}
+
+#toggle-btn {
+	margin-left: 1.5rem;
+}
+
+@media screen and (max-width: 480px) {
+	#task-name {
+		display: table;
+	}
+	#edit-btn, #toggle-btn{
+	margin-top: 1rem;
+	}
+	body {
+		padding-top: 3rem;
+	}
+	#toggle-btn {
+	margin-left: 0;
+}
+}

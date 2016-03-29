@@ -1,0 +1,62 @@
+application: dhs-hw
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  
+- url: /
+  script: main.app
+
+- url: /profile
+  script: main.app
+
+- url: /dashboard
+  script: main.app
+
+- url: /addtask
+  script: main.app
+
+- url: /submit
+  script: main.app
+
+- url: /update
+  script: main.app
+
+- url: /viewtask
+  script: main.app
+
+- url: /oauth2callback
+  script: main.app
+
+- url: /deletetask
+  script: main.app
+
+- url: /edittask
+  script: main.app
+
+- url: /done
+  script: main.app
+
+- url: /add_subject
+  script: main.app
+
+- url: /edit_subject
+  script: main.app
+
+- url: /*
+  static_dir: static
+
+libraries:
+- name: ssl
+  version: latest
+  
+- name: webapp2
+  version: "2.5.2"
+  
+- name: jinja2
+  version: latest
