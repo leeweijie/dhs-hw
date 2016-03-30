@@ -29,7 +29,8 @@ from oauth2client.appengine import OAuth2DecoratorFromClientSecrets
 
 decorator = OAuth2DecoratorFromClientSecrets(
     os.path.join(os.path.dirname(__file__), 'client_secret.json'),
-    scope='https://www.googleapis.com/auth/plus.me')
+    scope=['https://www.googleapis.com/auth/plus.me','email'],
+    hd='dhs.sg')
 
 service = build("plus", "v1")
 
@@ -57,11 +58,18 @@ def check_task_expired(task):
 def dhs_domain_check(func):
     def func_wrapper(self):    
         email = users.get_current_user().email()
-        domain = email.split('@')[1]
-        if domain == 'dhs.sg':
-            return func(self)
+        me_person = service.people().get(userId='me').execute(decorator.http())
+        oauth_email = me_person['emails'][0]['value']
+        if email == oauth_email:
+            domain = me_person['domain']
+            if domain == 'dhs.sg':
+                return func(self)
+            else:
+                return domain_error_handler(self)
         else:
-            return domain_error_handler(self)
+            decorator.get_credentials().revoke(decorator.http())
+            self.redirect(users.create_logout_url('/profile'))
+
     return func_wrapper
 
 def domain_error_handler(self):
